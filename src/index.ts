@@ -229,8 +229,49 @@
 // let StrArr = getArray(['sfd','sdf'])
 // console.log(StrArr)
 
-function pushIntoArray<ElementPusher>(Array: ElementPusher[]){
-    return Array;
+// function pushIntoArray<ElementPusher>(Array: ElementPusher[]){
+//     return Array;
+// }
+// let NumArr = pushIntoArray([1,2,3]);
+// console.log(NumArr)
+
+const score: Array<number> = []
+const names: Array<string> = []
+
+function indentityOne(val: boolean | number) : boolean | number {
+    return val; // for boolean or number 
 }
-let NumArr = pushIntoArray([1,2,3]);
-console.log(NumArr)
+
+function indentityTwo (val: any):any {
+    return val; // any data type
+}
+indentityTwo(4); //arg: any return any
+
+function indentityThree<Type>(val : Type) : Type {
+    return val; //whatever is type of args, the same type is returned.
+}
+indentityThree(3);
+
+function indentityFour <T>(val : T) : T {
+    return val
+} // we can use anything for T, any type!
+
+interface Bottle {
+    brand: string
+    type: number
+}
+
+// indentityFour<Bottle>({})
+
+function getSearchProducts<T>(products: T[]) : T {
+    //we do some db operations
+    const myIndex = 3;
+    return products[myIndex];
+}
+
+const getMoreSearchProducts = <T>(products: T[]): T  => {
+    //do some db operations
+    const myIndex = 4;
+    return products[myIndex];
+}
+
