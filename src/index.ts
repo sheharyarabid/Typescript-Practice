@@ -1,3 +1,8 @@
+/**
+ * This file contains examples of TypeScript code demonstrating various concepts such as basic data types,
+ * tuples, unions, enums, objects, type assertions, functions, interfaces, classes, generics, and TSDoc comments.
+ */
+
 // let id: number = 5;
 // console.log('id:',id)
 
@@ -238,40 +243,117 @@
 const score: Array<number> = []
 const names: Array<string> = []
 
+/**
+ * A function that returns the input value as is.
+ * @param val - The input value of type boolean or number.
+ * @returns The input value of type boolean or number.
+ */
 function indentityOne(val: boolean | number) : boolean | number {
-    return val; // for boolean or number 
+    return val;
 }
 
+/**
+ * A function that returns the input value as is.
+ * @param val - The input value of any type.
+ * @returns The input value of any type.
+ */
 function indentityTwo (val: any):any {
-    return val; // any data type
+    return val;
 }
-indentityTwo(4); //arg: any return any
+indentityTwo(4);
 
+/**
+ * A generic function that returns the input value as is.
+ * @param val - The input value of type T.
+ * @returns The input value of type T.
+ * @template Type - The type of the input value.
+ */
 function indentityThree<Type>(val : Type) : Type {
-    return val; //whatever is type of args, the same type is returned.
+    return val;
 }
 indentityThree(3);
 
+/**
+ * A generic function that returns the input value as is.
+ * @param val - The input value of type T.
+ * @returns The input value of type T.
+ * @template T - The type of the input value.
+ */
 function indentityFour <T>(val : T) : T {
-    return val
-} // we can use anything for T, any type!
+    return val;
+}
 
 interface Bottle {
-    brand: string
-    type: number
+    brand: string;
+    type: number;
 }
 
 // indentityFour<Bottle>({})
 
+/**
+ * A function that returns a specific element from an array of products.
+ * @param products - An array of products of type T.
+ * @returns The specific element from the array of products.
+ * @template T - The type of the products.
+ */
 function getSearchProducts<T>(products: T[]) : T {
     //we do some db operations
     const myIndex = 3;
     return products[myIndex];
 }
 
+/**
+ * A generic arrow function that returns a specific element from an array of products.
+ * @param products - An array of products of type T.
+ * @returns The specific element from the array of products.
+ * @template T - The type of the products.
+ */
 const getMoreSearchProducts = <T>(products: T[]): T  => {
     //do some db operations
     const myIndex = 4;
     return products[myIndex];
 }
 
+/**
+ * A function that returns an object with two properties.
+ * @param valOne - The first value of type T.
+ * @param valTwo - The second value of type U.
+ * @returns An object with properties valOne and valTwo.
+ * @template T - The type of valOne.
+ * @template U - The type of valTwo.
+ */
+// function anotherFunction <T , U extends number>(valOne: T,valTwo: U):object {
+//     return {valOne, valTwo};
+// }
+
+// anotherFunction(3, '4');
+
+
+interface database {
+    connection: string,
+    username: string,
+    password: string
+}
+
+function anotherFunction <T , U extends database>(valOne: T,valTwo: U):object {
+    return {valOne, valTwo};
+}
+
+// anotherFunction (3,{});
+
+interface quizes {
+    question: string,
+    answer: string
+}
+interface courses {
+    name: string,
+    duration: number
+    subject: string
+}
+
+class Sellable <T> {
+    public items: T[] = [];
+    addItems(item: T) {
+        this.items.push(item);
+    }
+}
